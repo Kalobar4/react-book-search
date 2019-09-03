@@ -27,26 +27,16 @@ class App extends Component {
   componentDidMount() {
     axios.get(queryUrl1).then(res => {
       console.log(res.data.items);
-      console.log(res.data.items[0].volumeInfo.title);
+      const array1 = Object.keys(res.data.items);
+      array1.map(index => {
+        console.log(res.data.items[index].volumeInfo.title);
+        console.log(res.data.items[index].volumeInfo.authors[0]);
+        console.log(res.data.items[index].volumeInfo.description);
+        console.log(res.data.items[index].volumeInfo.infoLink);
+        console.log(res.data.items[index].volumeInfo.imageLinks);
+      });
 
-      // Set state for book card
       this.setState({ books: res.data.items });
-      console.log(this.state.books[0]);
-      console.log(this.state.books[1]);
-      // this.setState({ bookInfo: res.data.items[0].volumeInfo });
-      // this.setState({ title: res.data.items[0].volumeInfo.title });
-      // this.setState({ authors: res.data.items[0].volumeInfo.authors[0] });
-      // this.setState({ description: res.data.items[0].volumeInfo.description });
-      // this.setState({
-      //   image: res.data.items[0].volumeInfo.imageLinks.thumbnail
-      // });
-      // this.setState({ link: res.data.items[0].volumeInfo.infoLink });
-
-      // console.log(this.state.title);
-      // console.log(this.state.authors);
-      // console.log(this.state.description);
-      // console.log(this.state.image);
-      // console.log(this.state.link);
     });
   }
 
