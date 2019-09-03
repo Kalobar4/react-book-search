@@ -71,7 +71,10 @@ class App extends Component {
           clearFunction={this.clearFunction}
           showClear={this.state.books.length > 0 ? true : false}
         />
-        <BookItem books={this.state.books} />
+        <div className='card text-center'>
+          <h6>Title: </h6>
+        </div>
+        {/* <BookItem books={this.state.books} /> */}
       </div>
     );
   }
