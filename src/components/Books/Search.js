@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// var replaceInArray = function(string){
-//   return string.replace(/\s+/g, "+")
-// }
-
 class Search extends Component {
   state = {
     text: ''

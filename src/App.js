@@ -9,22 +9,25 @@ import Books from './components/Books/Books';
 // import { thisExpression } from '@babel/types';
 
 // Query Url for Google Books
-const userSearch = 'harry+potter';
-const queryUrl1 = `https://www.googleapis.com/books/v1/volumes?q=${userSearch}&key=${process.env.REACT_APP_GOOGLE_CLIENT_SECRET}`;
+// const userSearch = 'harry+potter';
 
 class App extends Component {
   state = {
-    userSearch: 'harry+potter',
+    text: 'harry+potter',
     books: []
   };
+
+  // queryUrl1 = `https://www.googleapis.com/books/v1/volumes?q=${this.state.text}&key=${process.env.REACT_APP_GOOGLE_CLIENT_SECRET}`;
 
   componentDidMount() {
     this.getBooks();
   }
   // Method to make HTTP GET to Google Books API
   getBooks = function() {
+    let queryUrl = `https://www.googleapis.com/books/v1/volumes?q=${this.state.text}&key=${process.env.REACT_APP_GOOGLE_CLIENT_SECRET}`;
+
     axios
-      .get(queryUrl1)
+      .get(queryUrl)
       .then(res => {
         this.setState({ books: res.data.items });
       })
@@ -33,9 +36,18 @@ class App extends Component {
       });
   };
 
+  // Method to replace string space with + for queryurl
+  replaceInArray = function(string) {
+    return string.replace(/\s+/g, '+');
+  };
+
   // Method to search for a specific book title
   searchFunction = text => {
-    console.log(text);
+    const text2 = text.trim();
+    this.replaceInArray(text2);
+    console.log(text2);
+    text = this.setState({ text: text2 });
+    this.getBooks(text2);
   };
 
   render() {
