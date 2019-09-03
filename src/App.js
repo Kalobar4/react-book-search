@@ -6,6 +6,7 @@ import Navbar from './components/layout/Navbar';
 import Search from './components/Books/Search';
 import Books from './components/Books/Books';
 import BookItem from './components/Books/BookItem';
+import { thisExpression } from '@babel/types';
 
 // Query Url for Google Books
 const userSearch = 'harry+potter';
@@ -75,7 +76,10 @@ class App extends Component {
           clearFunction={this.clearFunction}
           showClear={this.state.books.length > 0 ? true : false}
         />
-        <BookItem books={this.state.books} />
+        <div className='card text-center'>
+          <h6>Title: </h6>
+        </div>
+        {/* <BookItem books={this.state.books} /> */}
       </div>
     );
   }
