@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export class Search extends Component {
+// var replaceInArray = function(string){
+//   return string.replace(/\s+/g, "+")
+// }
+
+class Search extends Component {
   state = {
     text: ''
   };
@@ -10,16 +14,15 @@ export class Search extends Component {
     searchFunction: PropTypes.func.isRequired,
     clearFunction: PropTypes.func.isRequired
   };
+
+  //Method to pass this.state.text to axios through prop method searchFunction
   onSubmit = event => {
     event.preventDefault();
-    if (this.state.text === '') {
-      return;
-    } else {
-      this.props.searchFunction(this.state.text);
-      console.log(this.state.text);
-      this.setState({ text: '' });
-    }
+    this.props.searchFunction(this.state.text);
+    this.setState({ text: '' });
   };
+
+  //Method to change state setting 'text' equal to user input
   onChange = event => this.setState({ text: event.target.value });
 
   render() {

@@ -14,11 +14,15 @@ const queryUrl1 = `https://www.googleapis.com/books/v1/volumes?q=${userSearch}&k
 
 class App extends Component {
   state = {
-    searchName: 'harry+potter',
+    userSearch: 'harry+potter',
     books: []
   };
 
   componentDidMount() {
+    this.getBooks();
+  }
+  // Method to make HTTP GET to Google Books API
+  getBooks = function() {
     axios
       .get(queryUrl1)
       .then(res => {
@@ -27,7 +31,12 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
-  }
+  };
+
+  // Method to search for a specific book title
+  searchFunction = text => {
+    console.log(text);
+  };
 
   render() {
     return (
