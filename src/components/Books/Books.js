@@ -10,10 +10,18 @@ class Books extends Component {
           return (
             <Fragment>
               <div>{index.volumeInfo.title}</div>
-              <div>{index.volumeInfo.authors[0]}</div>
-              <div>{index.volumeInfo.description}</div>
-              <div>{index.volumeInfo.infoLinks}</div>
-              <div>{index.volumeInfo.imageLinks.smallThumbnail}</div>
+              <div className='container'>
+                <img
+                  src={index.volumeInfo.imageLinks.smallThumbnail}
+                  alt='url'
+                  className='roundImg'
+                  style={{ width: '70px ' }}
+                ></img>
+
+                <div>{index.volumeInfo.authors[0]}</div>
+                <div>{index.volumeInfo.description}</div>
+                <div>{index.volumeInfo.infoLinks}</div>
+              </div>
             </Fragment>
           );
         })}
