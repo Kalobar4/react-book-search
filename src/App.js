@@ -15,7 +15,7 @@ const queryUrl1 = `https://www.googleapis.com/books/v1/volumes?q=${userSearch}&k
 class App extends Component {
   state = {
     searchName: 'harry+potter',
-    books: {}
+    books: []
     // bookInfo: {},
     // title: '',
     // authors: [],
@@ -39,6 +39,7 @@ class App extends Component {
         });
 
         this.setState({ books: res.data.items });
+        console.log(this.state.books);
       })
       .catch(err => {
         console.log(err);
@@ -71,10 +72,10 @@ class App extends Component {
           clearFunction={this.clearFunction}
           showClear={this.state.books.length > 0 ? true : false}
         />
+        <BookItem books={this.state.books} />
         <div className='card text-center'>
           <h6>Title: </h6>
         </div>
-        {/* <BookItem books={this.state.books} /> */}
       </div>
     );
   }

@@ -4,6 +4,15 @@ import { Link } from 'react-router-dom';
 
 const BookItem = props => {
   console.log(props, 'BookItemprops');
+  console.log(props.books);
+
+  props.books.map(index => {
+    console.log(index.volumeInfo.title, '**********');
+    console.log(index.volumeInfo.authors[0]);
+    console.log(index.volumeInfo.description);
+    console.log(index.volumeInfo.infoLink);
+    console.log(index.volumeInfo.imageLinks);
+  });
 
   return (
     <div className='card text-center'>
@@ -15,36 +24,25 @@ const BookItem = props => {
           gridGap: '1rem'
         }}
       >
-        {props.map(book => {
-          console.log(book.volumeInfo.title);
-          return book.volumeInfo.title;
-        })}
+        {Object.keys(props)}
       </div>
 
-      {/* <div>
-        <img
-          src={props.volumeInfo.imageLinks.thumbnail}
-          alt='url'
-          className='roundImg'
-          style={{ width: '80px ' }}
-        />
-        <h4>{props.volumeInfo.title}</h4>
+      <div>
+        <img src='' alt='url' className='roundImg' style={{ width: '80px ' }} />
+        <h4>Title</h4>
       </div>
       <div>
-        <Link
-          href={props.volumeInfo.infoLink}
-          className='btn btnDark btn-sm my1'
-        >
+        <a href='' className='btn btnDark btn-sm my1'>
           {' '}
           More{' '}
-        </Link>
-      </div> */}
+        </a>
+      </div>
     </div>
   );
 };
 
 BookItem.propTypes = {
-  book: propTypes.object.isRequired
+  books: propTypes.object.isRequired
 };
 
 const bookStyle = {
