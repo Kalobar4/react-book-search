@@ -15,7 +15,7 @@ const queryUrl1 = `https://www.googleapis.com/books/v1/volumes?q=${userSearch}&k
 class App extends Component {
   state = {
     searchName: 'harry+potter',
-    books: []
+    books: {}
     // bookInfo: {},
     // title: '',
     // authors: [],
@@ -25,19 +25,24 @@ class App extends Component {
   };
 
   componentDidMount() {
-    axios.get(queryUrl1).then(res => {
-      console.log(res.data.items);
-      const array1 = Object.keys(res.data.items);
-      array1.map(index => {
-        console.log(res.data.items[index].volumeInfo.title);
-        console.log(res.data.items[index].volumeInfo.authors[0]);
-        console.log(res.data.items[index].volumeInfo.description);
-        console.log(res.data.items[index].volumeInfo.infoLink);
-        console.log(res.data.items[index].volumeInfo.imageLinks);
-      });
+    axios
+      .get(queryUrl1)
+      .then(res => {
+        console.log(res.data.items);
+        const array1 = Object.keys(res.data.items);
+        array1.map(index => {
+          console.log(res.data.items[index].volumeInfo.title);
+          console.log(res.data.items[index].volumeInfo.authors[0]);
+          console.log(res.data.items[index].volumeInfo.description);
+          console.log(res.data.items[index].volumeInfo.infoLink);
+          console.log(res.data.items[index].volumeInfo.imageLinks);
+        });
 
-      this.setState({ books: res.data.items });
-    });
+        this.setState({ books: res.data.items });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   //Search and setState to display data based upon res.data returned
@@ -66,10 +71,7 @@ class App extends Component {
           clearFunction={this.clearFunction}
           showClear={this.state.books.length > 0 ? true : false}
         />
-        <div className='card text-center'>
-          <h6>Title: </h6>
-        </div>
-        {/* <BookItem books={this.state.books} /> */}
+        <BookItem books={this.state.books} />
       </div>
     );
   }
