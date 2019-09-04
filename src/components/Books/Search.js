@@ -15,7 +15,7 @@ class Search extends Component {
   onSubmit = event => {
     event.preventDefault();
     this.props.searchFunction(this.state.text);
-    this.setState({ text: '' });
+    // this.setState({ text: '' });
   };
 
   //Method to change state setting 'text' equal to user input

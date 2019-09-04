@@ -9,18 +9,32 @@ class Books extends Component {
         {this.props.books.map(index => {
           return (
             <Fragment>
-              <div>{index.volumeInfo.title}</div>
+              <div>{!index.volumeInfo.title ? '' : index.volumeInfo.title}</div>
               <div className='container'>
                 <img
-                  src={index.volumeInfo.imageLinks.smallThumbnail}
+                  src={
+                    !index.volumeInfo.imageLinks.smallThumbnail
+                      ? ''
+                      : index.volumeInfo.imageLinks.smallThumbnail
+                  }
                   alt='url'
                   className='roundImg'
                   style={{ width: '70px ' }}
                 ></img>
 
-                <div>{index.volumeInfo.authors[0]}</div>
-                <div>{index.volumeInfo.description}</div>
-                <div>{index.volumeInfo.infoLinks}</div>
+                <div>
+                  {!index.volumeInfo.authors ? '' : index.volumeInfo.authors[0]}
+                </div>
+                <div>
+                  {!index.volumeInfo.description
+                    ? ''
+                    : index.volumeInfo.description}
+                </div>
+                <div>
+                  {!index.volumeInfo.infoLinks
+                    ? ''
+                    : index.volumeInfo.infoLinks}
+                </div>
               </div>
             </Fragment>
           );

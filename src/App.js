@@ -30,6 +30,7 @@ class App extends Component {
       .get(queryUrl)
       .then(res => {
         this.setState({ books: res.data.items });
+        console.log(this.state.books, '****** Axios res.data.items');
       })
       .catch(err => {
         console.log(err);
