@@ -1,33 +1,25 @@
 {
-  "name": "react-book-search",
-  "version": "0.1.0",
-  "private": true,
+  "name": "",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "server/server.js",
+  "scripts": {
+    "install": "yarn run install:client && yarn run install:server",
+    "install:client": "cd client && yarn",
+    "install:server": "cd server && yarn",
+    "build": "cd client && yarn build",
+    "start": "node server/server.js",
+    "start:dev": "concurrently -n client,server \"yarn run client:dev\" \"yarn run server:dev\"",
+    "client:dev": "cd client && yarn start",
+    "server:dev": "cd server && yarn start:dev",
+    "heroku-postbuild": "yarn build"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.10"
+  },
   "dependencies": {
     "axios": "^0.19.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "mdbreact": "^4.19.2"
   }
 }
